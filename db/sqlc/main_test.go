@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"testing"
+
+	_ "github.com/lib/pq"
 )
 
 const (
@@ -14,6 +16,7 @@ const (
 
 var testQueries *Queries
 
+// run --- go test / unit test app doesn't work..
 func TestMain(m *testing.M) {
 	conn, err := sql.Open(dbDriver, dbSource)
 	if err != nil {
