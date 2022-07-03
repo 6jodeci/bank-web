@@ -18,7 +18,7 @@ type Account struct {
 }
 
 type Entry struct {
-	Code      int64         `json:"code"`
+	ID        int64         `json:"id"`
 	AccountID sql.NullInt64 `json:"account_id"`
 	// can be negative or positive
 	Amount    int64     `json:"amount"`
@@ -26,7 +26,7 @@ type Entry struct {
 }
 
 type Transfer struct {
-	Code          int64         `json:"code"`
+	ID            int64         `json:"id"`
 	FromAccountID sql.NullInt64 `json:"from_account_id"`
 	ToAccountID   sql.NullInt64 `json:"to_account_id"`
 	// must be positive
