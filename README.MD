@@ -15,5 +15,7 @@ Install bank-web with makefile
       make dropdb
   make sqlc code:
       make sqlc
+  make tests:
+      make test
 ```
     
