@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  test:
+  CI TEST:
     services:
       postgres:
         image: postgres:14.4-alpine
@@ -30,6 +30,12 @@ jobs:
       uses: actions/setup-go@v3
       with:
         go-version: 1.18
+
+    - name: Intall golang-migrate
+      run: |
+      curl -L https://github.com/golang-migrate/migrate/releases/download/v4.15.2/migrate.linux-amd64.tar.gz | tar xvz
+      sudo mv migrate /usr/bin/
+      which migrate
 
     - name: Run migrations
       run: make migrateup
