@@ -1,6 +1,7 @@
 package db
 
 import (
+	"bankapp/util"
 	"database/sql"
 	"log"
 	"os"
@@ -9,18 +10,16 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	dbDriver = "postgres"
-	dbSource = "postgresql://root:secret@localhost:5433/bank_db?sslmode=disable"
-)
-
 var testQueries *Queries
 var testDB *sql.DB
 
 // run --- go test / unit test app doesn't work..
 func TestMain(m *testing.M) {
-	var err error
-	testDB, err = sql.Open(dbDriver, dbSource)
+	config, err := util.LoadConfig("../..")
+	if err != nil {
+		log.Fatal("cannot load config:", err)
+	}
+	testDB, err = sql.Open(config.DBDriver, config.DBSourse)
 	if err != nil {
 		log.Fatal("cannot connect to db:", err)
 	}
@@ -29,4 +28,3 @@ func TestMain(m *testing.M) {
 
 	os.Exit(m.Run())
 }
-
