@@ -93,4 +93,3 @@ func TestListAccounts(t *testing.T) {
 		require.NotEmpty(t, account)
 	}
 }
-
