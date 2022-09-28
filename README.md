@@ -1,7 +1,7 @@
 ## BANK_SCHEMA 
+- ![Simple bank](https://user-images.githubusercontent.com/65400970/189363274-26487859-16aa-48aa-9f0c-103c17b26a87.png)
 
 ## Setup infrastructure
-- ![Simple bank](https://user-images.githubusercontent.com/65400970/189363274-26487859-16aa-48aa-9f0c-103c17b26a87.png)
 - Create the bank-network
 
     ``` bash
