@@ -31,6 +31,7 @@ func main() {
 		log.Fatal("cannot connect to db:", err)
 	}
 	store := db.NewStore(conn)
+	
 	// can be changed to gin(http) server.
 	go runGatewayServer(config, store)
 	runGrpcServer(config, store)
