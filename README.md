@@ -55,6 +55,9 @@ The service I created is a banking service. It will provide APIs for the fronten
 
 ### Documentation
 
+- Swagger docs:
+    http://localhost:8080/swagger/#/
+
 - Generate DB documentation:
 
     ```bash

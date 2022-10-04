@@ -31,7 +31,7 @@ func main() {
 		log.Fatal("cannot connect to db:", err)
 	}
 	store := db.NewStore(conn)
-	
+
 	// can be changed to gin(http) server.
 	go runGatewayServer(config, store)
 	runGrpcServer(config, store)
@@ -85,6 +85,9 @@ func runGatewayServer(config util.Config, store db.Store) {
 
 	mux := http.NewServeMux()
 	mux.Handle("/", grpcMux)
+
+	fs := http.FileServer(http.Dir("./doc/swagger"))
+	mux.Handle("/swagger/", http.StripPrefix("/swagger/", fs))
 
 	listener, err := net.Listen("tcp", config.HTTPServerAdress)
 	if err != nil {
