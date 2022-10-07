@@ -32,6 +32,10 @@ func main() {
 	if err != nil {
 		log.Fatal("cannot connect to db:", err)
 	}
+
+	// run db migration 
+	
+
 	store := db.NewStore(conn)
 
 	// can be changed to gin(http) server.
