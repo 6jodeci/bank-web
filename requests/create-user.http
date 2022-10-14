@@ -1,0 +1,11 @@
+POST /v1/create_user HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 108
+
+{
+    "username":"alice",
+    "password":"secret",
+    "full_name":"Agor",
+    "email":"alice@mail.com"
+}

@@ -1,0 +1,11 @@
+PATCH /v1/update_user HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 118
+
+{
+    "username": "alice",
+    "full_name": "new Alice",
+    "email": "alice@gmail.com",
+    "password": "newsecret"
+}
