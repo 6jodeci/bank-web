@@ -1,0 +1,8 @@
+POST /tokens/renew_access HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 319
+
+{
+    "refresh_token": "v2.local.GC36Diynp4Vl1MZWneKSxh_Xy_sRaKVDa-dF8Kvq3MY1VZ1JX3VVEqFz96cgM15No5Fs-k_BquZ1pjGSeZUAYiuqUG9J-SGh8snatG572dLEpSrCv4jHzG1OqvOt95UZtIlrgTwsESOy5Cn_Nv2mHTtXScZpsXYbNOg3ConnKN5-r9-O6nEAPXjrdXJKSr4HMlhsSMt3v3z6iFUwCG7s57Rz6L5qjEHQ6x90rzAuU0fmvFW1VPLPSirM1zNWbfUNKI3QN1bxVmDJDn3fEmRm.bnVsbA"
+}
