@@ -1,3 +1,4 @@
 .vscode
 *.log
 ./evans
+app.env
