@@ -1,4 +1,6 @@
 DB_URL=postgresql://root:secret@localhost:5432/bank_db?sslmode=disable
+network:
+	docker network create bank-network
 postgres:
 	docker run --name postgres14 --network bank-network -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:14.4-alpine
 
@@ -55,4 +57,10 @@ proto:
 evans:
 	./evans --host localhost --port 9090 -r repl
 
-.PHONY: postgres createdb dropdb migrateup migratedown migrateup1 db_docs db_schema migratedown1 sqlc server mock proto evans ##proto_path
+redis:
+	docker run --name redis -p 6379:6379 -d redis:7-alpine
+
+pingredis:
+	docker exec -it redis redis-cli ping
+
+.PHONY: network postgres createdb dropdb migrateup migratedown migrateup1 db_docs db_schema migratedown1 sqlc server mock proto evans redis pingredis

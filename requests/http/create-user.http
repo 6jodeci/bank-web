@@ -4,8 +4,8 @@ Content-Type: application/json
 Content-Length: 108
 
 {
-    "username":"alice",
+    "username":"alice2",
     "password":"secret",
     "full_name":"Agor",
-    "email":"alice@mail.com"
+    "email":"alice2@mail.com"
 }
