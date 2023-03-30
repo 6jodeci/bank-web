@@ -1,17 +1,17 @@
 package api
 
 import (
-	db "bankapp/db/sqlc"
-	"bankapp/token"
-	"bankapp/util"
 	"fmt"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
+	db "github.com/techschool/simplebank/db/sqlc"
+	"github.com/techschool/simplebank/token"
+	"github.com/techschool/simplebank/util"
 )
 
-// Server serves HTTP requests for banking service.
+// Server serves HTTP requests for our banking service.
 type Server struct {
 	config     util.Config
 	store      db.Store
@@ -19,12 +19,13 @@ type Server struct {
 	router     *gin.Engine
 }
 
-// NewServer creates a new HTTP server and setup routing
+// NewServer creates a new HTTP server and set up routing.
 func NewServer(config util.Config, store db.Store) (*Server, error) {
 	tokenMaker, err := token.NewPasetoMaker(config.TokenSymmetricKey)
 	if err != nil {
 		return nil, fmt.Errorf("cannot create token maker: %w", err)
 	}
+
 	server := &Server{
 		config:     config,
 		store:      store,
@@ -34,6 +35,7 @@ func NewServer(config util.Config, store db.Store) (*Server, error) {
 	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
 		v.RegisterValidation("currency", validCurrency)
 	}
+
 	server.setupRouter()
 	return server, nil
 }
@@ -46,19 +48,16 @@ func (server *Server) setupRouter() {
 	router.POST("/tokens/renew_access", server.renewAccessToken)
 
 	authRoutes := router.Group("/").Use(authMiddleware(server.tokenMaker))
-
 	authRoutes.POST("/accounts", server.createAccount)
 	authRoutes.GET("/accounts/:id", server.getAccount)
 	authRoutes.GET("/accounts", server.listAccounts)
-	// TODO: UPDATE & DELETE ACCOUNT
-	// router.DELETE("/accounts/:id", server.deleteAccount)
-	// router.PUT("/accounts/:id", server.updateAccount)
+
 	authRoutes.POST("/transfers", server.createTransfer)
 
 	server.router = router
 }
 
-// Start runs the HTTP server on a specific adress
+// Start runs the HTTP server on a specific address.
 func (server *Server) Start(address string) error {
 	return server.router.Run(address)
 }

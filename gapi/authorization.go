@@ -1,11 +1,11 @@
 package gapi
 
 import (
-	"bankapp/token"
 	"context"
 	"fmt"
 	"strings"
 
+	"github.com/techschool/simplebank/token"
 	"google.golang.org/grpc/metadata"
 )
 
@@ -19,6 +19,7 @@ func (server *Server) authorizeUser(ctx context.Context) (*token.Payload, error)
 	if !ok {
 		return nil, fmt.Errorf("missing metadata")
 	}
+
 	values := md.Get(authorizationHeader)
 	if len(values) == 0 {
 		return nil, fmt.Errorf("missing authorization header")
@@ -29,10 +30,12 @@ func (server *Server) authorizeUser(ctx context.Context) (*token.Payload, error)
 	if len(fields) < 2 {
 		return nil, fmt.Errorf("invalid authorization header format")
 	}
+
 	authType := strings.ToLower(fields[0])
 	if authType != authorizationBearer {
 		return nil, fmt.Errorf("unsupported authorization type: %s", authType)
 	}
+
 	accessToken := fields[1]
 	payload, err := server.tokenMaker.VerifyToken(accessToken)
 	if err != nil {

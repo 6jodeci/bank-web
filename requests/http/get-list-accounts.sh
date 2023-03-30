@@ -1,2 +1,0 @@
-curl --location --request GET 'http://localhost:8080/accounts?page_id=1&page_size=5' \
---header 'Authorization: Bearer v2.local.Cod-zk-osDSNqH9AQtc3KD--RLhIMKbsm_UcandJlPu8Gwn5QHG7xFfR9JKRkT54ipxwgqHaJFpn0mDq86j2M5OumirCk3oituIY6s3hdb9k4BoI9AtMX_NzoHJbVcAGFM-CnRcDak0KKPq6a9tsiAwtgfYEuNeIhw1Azih1y_VZ0PhJn7tLg_ne7V7DoculSe2ugSni4Q9NI5A44mHMadeQX8mqeKmxpALgFL_MoSveHSF9RmFHPI2wsBW8MVxmvAtN9vLCWaQ5PDRuiM8e.bnVsbA'

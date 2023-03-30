@@ -1,4 +1,2 @@
-.vscode
 *.log
-./evans
-app.env
+.vscode

@@ -1,15 +1,16 @@
 package gapi
 
 import (
-	db "bankapp/db/sqlc"
-	"bankapp/pb"
-	"bankapp/token"
-	"bankapp/util"
-	"bankapp/worker"
 	"fmt"
+
+	db "github.com/techschool/simplebank/db/sqlc"
+	"github.com/techschool/simplebank/pb"
+	"github.com/techschool/simplebank/token"
+	"github.com/techschool/simplebank/util"
+	"github.com/techschool/simplebank/worker"
 )
 
-// Server serves gRPC requests for banking service.
+// Server serves gRPC requests for our banking service.
 type Server struct {
 	pb.UnimplementedSimpleBankServer
 	config          util.Config
@@ -24,11 +25,13 @@ func NewServer(config util.Config, store db.Store, taskDistributor worker.TaskDi
 	if err != nil {
 		return nil, fmt.Errorf("cannot create token maker: %w", err)
 	}
+
 	server := &Server{
-		config:     config,
-		store:      store,
-		tokenMaker: tokenMaker,
+		config:          config,
+		store:           store,
+		tokenMaker:      tokenMaker,
 		taskDistributor: taskDistributor,
 	}
+
 	return server, nil
 }

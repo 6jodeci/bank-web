@@ -1,10 +1,6 @@
 package api
 
 import (
-	mockdb "bankapp/db/mock"
-	db "bankapp/db/sqlc"
-	"bankapp/token"
-	"bankapp/util"
 	"bytes"
 	"database/sql"
 	"encoding/json"
@@ -16,6 +12,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
+	mockdb "github.com/techschool/simplebank/db/mock"
+	db "github.com/techschool/simplebank/db/sqlc"
+	"github.com/techschool/simplebank/token"
+	"github.com/techschool/simplebank/util"
 )
 
 func TestTransferAPI(t *testing.T) {

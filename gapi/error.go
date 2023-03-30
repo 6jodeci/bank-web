@@ -13,7 +13,7 @@ func fieldViolation(field string, err error) *errdetails.BadRequest_FieldViolati
 	}
 }
 
-func invalidArgumetError(violations []*errdetails.BadRequest_FieldViolation) error {
+func invalidArgumentError(violations []*errdetails.BadRequest_FieldViolation) error {
 	badRequest := &errdetails.BadRequest{FieldViolations: violations}
 	statusInvalid := status.New(codes.InvalidArgument, "invalid parameters")
 
@@ -21,6 +21,7 @@ func invalidArgumetError(violations []*errdetails.BadRequest_FieldViolation) err
 	if err != nil {
 		return statusInvalid.Err()
 	}
+
 	return statusDetails.Err()
 }
 

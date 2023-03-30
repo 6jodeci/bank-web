@@ -1,24 +1,26 @@
 package db
 
 import (
-	"bankapp/util"
 	"context"
 	"database/sql"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/require"
+	"github.com/techschool/simplebank/util"
 )
 
 func createRandomUser(t *testing.T) User {
 	hashedPassword, err := util.HashPassword(util.RandomString(6))
 	require.NoError(t, err)
+
 	arg := CreateUserParams{
 		Username:       util.RandomOwner(),
 		HashedPassword: hashedPassword,
 		FullName:       util.RandomOwner(),
 		Email:          util.RandomEmail(),
 	}
+
 	user, err := testQueries.CreateUser(context.Background(), arg)
 	require.NoError(t, err)
 	require.NotEmpty(t, user)
@@ -27,7 +29,6 @@ func createRandomUser(t *testing.T) User {
 	require.Equal(t, arg.HashedPassword, user.HashedPassword)
 	require.Equal(t, arg.FullName, user.FullName)
 	require.Equal(t, arg.Email, user.Email)
-
 	require.True(t, user.PasswordChangedAt.IsZero())
 	require.NotZero(t, user.CreatedAt)
 
@@ -63,6 +64,7 @@ func TestUpdateUserOnlyFullName(t *testing.T) {
 			Valid:  true,
 		},
 	})
+
 	require.NoError(t, err)
 	require.NotEqual(t, oldUser.FullName, updatedUser.FullName)
 	require.Equal(t, newFullName, updatedUser.FullName)
@@ -81,6 +83,7 @@ func TestUpdateUserOnlyEmail(t *testing.T) {
 			Valid:  true,
 		},
 	})
+
 	require.NoError(t, err)
 	require.NotEqual(t, oldUser.Email, updatedUser.Email)
 	require.Equal(t, newEmail, updatedUser.Email)
@@ -102,6 +105,7 @@ func TestUpdateUserOnlyPassword(t *testing.T) {
 			Valid:  true,
 		},
 	})
+
 	require.NoError(t, err)
 	require.NotEqual(t, oldUser.HashedPassword, updatedUser.HashedPassword)
 	require.Equal(t, newHashedPassword, updatedUser.HashedPassword)
@@ -133,15 +137,12 @@ func TestUpdateUserAllFields(t *testing.T) {
 			Valid:  true,
 		},
 	})
-	require.NoError(t, err)
 
+	require.NoError(t, err)
+	require.NotEqual(t, oldUser.HashedPassword, updatedUser.HashedPassword)
+	require.Equal(t, newHashedPassword, updatedUser.HashedPassword)
+	require.NotEqual(t, oldUser.Email, updatedUser.Email)
+	require.Equal(t, newEmail, updatedUser.Email)
 	require.NotEqual(t, oldUser.FullName, updatedUser.FullName)
 	require.Equal(t, newFullName, updatedUser.FullName)
-	
-	
-	require.NotEqual(t, oldUser.FullName, updatedUser.FullName)
-	require.Equal(t, newEmail, updatedUser.Email)
-
-	require.NotEqual(t, oldUser.Email, updatedUser.Email)
-	require.Equal(t, newHashedPassword, updatedUser.HashedPassword)
 }

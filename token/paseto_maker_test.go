@@ -1,11 +1,11 @@
 package token
 
 import (
-	"bankapp/util"
 	"testing"
 	"time"
 
 	"github.com/stretchr/testify/require"
+	"github.com/techschool/simplebank/util"
 )
 
 func TestPasetoMaker(t *testing.T) {
@@ -25,7 +25,7 @@ func TestPasetoMaker(t *testing.T) {
 
 	payload, err = maker.VerifyToken(token)
 	require.NoError(t, err)
-	require.NotEmpty(t, payload)
+	require.NotEmpty(t, token)
 
 	require.NotZero(t, payload.ID)
 	require.Equal(t, username, payload.Username)

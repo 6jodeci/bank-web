@@ -1,9 +1,6 @@
 package api
 
 import (
-	mockdb "bankapp/db/mock"
-	db "bankapp/db/sqlc"
-	"bankapp/util"
 	"bytes"
 	"database/sql"
 	"encoding/json"
@@ -18,6 +15,9 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/lib/pq"
 	"github.com/stretchr/testify/require"
+	mockdb "github.com/techschool/simplebank/db/mock"
+	db "github.com/techschool/simplebank/db/sqlc"
+	"github.com/techschool/simplebank/util"
 )
 
 type eqCreateUserParamsMatcher struct {
@@ -55,7 +55,7 @@ func TestCreateUserAPI(t *testing.T) {
 		name          string
 		body          gin.H
 		buildStubs    func(store *mockdb.MockStore)
-		checkResponse func(recorder *httptest.ResponseRecorder)
+		checkResponse func(recoder *httptest.ResponseRecorder)
 	}{
 		{
 			name: "OK",
@@ -140,7 +140,7 @@ func TestCreateUserAPI(t *testing.T) {
 				"username":  user.Username,
 				"password":  password,
 				"full_name": user.FullName,
-				"email":     "invali-email",
+				"email":     "invalid-email",
 			},
 			buildStubs: func(store *mockdb.MockStore) {
 				store.EXPECT().
@@ -169,6 +169,7 @@ func TestCreateUserAPI(t *testing.T) {
 			},
 		},
 	}
+
 	for i := range testCases {
 		tc := testCases[i]
 
@@ -195,6 +196,7 @@ func TestCreateUserAPI(t *testing.T) {
 		})
 	}
 }
+
 func TestLoginUserAPI(t *testing.T) {
 	user, password := randomUser(t)
 
@@ -314,8 +316,6 @@ func TestLoginUserAPI(t *testing.T) {
 		})
 	}
 }
-
-
 
 func randomUser(t *testing.T) (user db.User, password string) {
 	password = util.RandomString(6)
