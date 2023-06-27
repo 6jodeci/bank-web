@@ -1,0 +1,10 @@
+POST /accounts HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Authorization: Bearer v2.local.npz24_LQ0pcrsXlBITt8kDGKNrWbfMYL9qMKoZkw5BGbnuktcHxCFxM0eh65osTjs8pezWoR0F9oqWIpC6YL5H5xNtXlkx5V6S57DLPZVsv7ShItf8utAWW_TV3FpwKSjwMZa59rkKgZvzmSV31C9FAdtWeCY3SCQiBhDoksvU-E4u3Ws6YpxVeYZY2zlY8TleYfwITIpy3S6U4JV-CcUP65azBEnUSFBmhc0mFr1p5WLTV1dWQoxwkpSF6ocTe9dPmqSaM8CxB5-UNUPuojKA.bnVsbA
+
+{
+    "owner": "egor02631",
+    "currency": "CAD",
+    "balance": 500
+}

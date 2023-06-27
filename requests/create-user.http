@@ -1,0 +1,11 @@
+POST /users HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 108
+
+{
+    "username":"egor02631",
+    "password":"secret",
+    "full_name":"egor",
+    "email":"egor02631s@gmail.com"
+}

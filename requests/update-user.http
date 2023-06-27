@@ -1,0 +1,12 @@
+PATCH /v1/update_user HTTP/1.1
+Host: localhost:8080
+Content-Type: application/json
+Content-Length: 118
+Authorization: Bearer v2.local.8mfmqUT7HPqeqZhqLN8Scuc_88wJKobzcD8UDEEzL5vGaLs3JG5CQ94ziQTdOn7Y09VUH6U-jDI55MalWwnCWva6bd430u7AIyZs2CdJRi_PaBrjD_gmcA0Panm93yRmFOkjZQDlpN35hAOck57VV6IiJkmN-Mg-3OiuYbWAeA5U8ay5rqS7zjSWtGQuFujRa7yOcmIOxwrGT6S4km3zLZ0Jfy1tbBQWLypbuTw6MxCltQKY7by9qu0DvRG3uybKU_IalF0yLzhYhFNjkshN.bnVsbA
+
+{
+    "username": "egor0263",
+    "full_name": "egor",
+    "email": "egor0263s@gmail.com",
+    "password": "secret"
+}
