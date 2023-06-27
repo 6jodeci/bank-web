@@ -7,9 +7,9 @@ import (
 	"testing"
 	"time"
 
+	"github.com/6jodeci/bank-web/token"
 	"github.com/gin-gonic/gin"
 	"github.com/stretchr/testify/require"
-	"github.com/6jodeci/bank-web/token"
 )
 
 func addAuthorization(

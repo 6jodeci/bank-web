@@ -15,9 +15,9 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 	mockdb "github.com/6jodeci/bank-web/db/mock"
-	db "github.com/techschool/simplebank/db/sqlc"
-	"github.com/techschool/simplebank/token"
-	"github.com/techschool/simplebank/util"
+	db "github.com/6jodeci/bank-web/db/sqlc"
+	"github.com/6jodeci/bank-web/token"
+	"github.com/6jodeci/bank-web/util"
 )
 
 func TestGetAccountAPI(t *testing.T) {
